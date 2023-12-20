@@ -64,9 +64,8 @@ class UserRegistrationSerializer(RegisterSerializer):
         user.last_name = self.validated_data.get("last_name")
         user.save()
 
-        phone_number = validated_data.get("phone_number")
 
-        if phone_number:
+        if phone_number := validated_data.get("phone_number"):
             PhoneNumber.objects.create(user=user, phone_number=phone_number)
             user.phone.save()
 
